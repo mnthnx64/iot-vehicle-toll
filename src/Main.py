@@ -18,13 +18,8 @@ SCALAR_RED = (0.0, 0.0, 255.0)
 
 showSteps = False
 
-def main():
-    blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()
-    if blnKNNTrainingSuccessful == False:                              
-        print("\nerror: KNN traning was not successful\n")
-        return                                                        
-
-    imgOriginalScene  = cv2.imread("assets/1.png")
+def main(np_img):                                        
+    imgOriginalScene = np_img
 
     if imgOriginalScene is None:
         print("\nerror: image not read from file \n\n")
@@ -33,31 +28,17 @@ def main():
 
     listOfPossiblePlates = DetectPlates.detectPlatesInScene(imgOriginalScene)
     listOfPossiblePlates = DetectChars.detectCharsInPlates(listOfPossiblePlates)
-    cv2.imshow("imgOriginalScene", imgOriginalScene)
 
     if len(listOfPossiblePlates) == 0:
-        print("\nno license plates were detected\n")
+        return {"number_of_plates":0, "plate_number":""}
     else:
         listOfPossiblePlates.sort(key = lambda possiblePlate: len(possiblePlate.strChars), reverse = True)
         licPlate = listOfPossiblePlates[0]
-
-        cv2.imshow("imgPlate", licPlate.imgPlate)
         py_img = cv2.cvtColor(licPlate.imgPlate, cv2.COLOR_BGR2RGB)
         im_pil = Image.fromarray(py_img)
-        print("---------------------------------------------------------")
-        print("License Plate No: " + pytesseract.image_to_string(im_pil))
-        print("---------------------------------------------------------")
-
-        if len(licPlate.strChars) == 0:
-            print("\nno characters were detected\n\n")
-            return
-
         drawRedRectangleAroundPlate(imgOriginalScene, licPlate)
-        cv2.imshow("imgOriginalScene", imgOriginalScene)
-        cv2.imwrite("imgOriginalScene.png", imgOriginalScene)
 
-    cv2.waitKey(0)
-    return
+    return {"number_of_plates":len(listOfPossiblePlates), "plate_number": pytesseract.image_to_string(im_pil)}
 
 
 def drawRedRectangleAroundPlate(imgOriginalScene, licPlate):
@@ -69,26 +50,8 @@ def drawRedRectangleAroundPlate(imgOriginalScene, licPlate):
 
 
 class Detect:
-    def __init__(self):
-        main()
+    def __init__(self,image):
+        self.response = main(image)
 
-if __name__ == "__main__":
-    main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def getResponse(self):
+        return self.response
