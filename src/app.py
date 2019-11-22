@@ -12,11 +12,14 @@ def hello():
 
 @app.route("/post_image", methods = ['POST'])
 def post_image():
-    req_data = request
-    nparr = np.fromstring(req_data.data, np.uint8)
-    img = cv2.imdecode(nparr,cv2.IMREAD_COLOR)
-    car_plate = Main.Detect(img)
-    return jsonify(car_plate.getResponse())
+    try:
+        req_data = request
+        nparr = np.fromstring(req_data.data, np.uint8)
+        img = cv2.imdecode(nparr,cv2.IMREAD_COLOR)
+        car_plate = Main.Detect(img)
+        return jsonify(car_plate.getResponse())
+    except:
+        return jsonify({"Error":"Error! Something went wrong."})
 
 
 blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()
