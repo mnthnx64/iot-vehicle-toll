@@ -9,6 +9,20 @@ This project uses the inbulit `cv2.ml` module to detect the license plate of veh
 ## Installaton
 
 The project was solely built in `python 3.6.8` at the time of release. Install the dependencies by running `pip install -r requirements.txt`.
-Please run the code in `uploadimg.py` with a specified path to image to upload an image to the application.
+To upload an image use the following format:
 
-Updates: I will release a version which takes the input from camera shortly.
+```python
+import requests
+import cv2
+
+BASE_IP = ''
+url = 'post_image'
+
+img = cv2.imread('path_to_image.png')
+_, data = cv2.imencode('.jpg',img)
+
+response = requests.post(BASE_IP + url, data=data.tostring())
+print(response.json())
+```
+
+Update: I will release a version which takes the input from camera shortly.
