@@ -5,10 +5,11 @@ verify_ssl = true
 [packages]
 Flask = "*"
 numpy = "*"
+pytesseract = "*"
+pillow = "*"
 opencv-contrib-python = "*"
 gunicorn = "*"
 Jinja2 = ">=2.10.1"
-pytesseract = "*"
 
 [requires]
 python_version = "3.6.8"
