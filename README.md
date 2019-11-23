@@ -24,5 +24,3 @@ _, data = cv2.imencode('.jpg',img)
 response = requests.post(BASE_IP + url, data=data.tostring())
 print(response.json())
 ```
-
-Update: I will release a version which takes the input from camera shortly.
