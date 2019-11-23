@@ -31,14 +31,14 @@ def loadKNNDataAndTrainKNN():
     validContoursWithData = []
 
     try:
-        npaClassifications = np.loadtxt("classifications.txt", np.float32)                  # read in training classifications
+        npaClassifications = np.loadtxt("src/classifications.txt", np.float32)                  # read in training classifications
     except:
         print("error, unable to open classifications.txt, exiting program\n")
         os.system("pause")
         return False
 
     try:
-        npaFlattenedImages = np.loadtxt("flattened_images.txt", np.float32)
+        npaFlattenedImages = np.loadtxt("src/flattened_images.txt", np.float32)
     except:
         print("error, unable to open flattened_images.txt, exiting program\n")
         os.system("pause")
