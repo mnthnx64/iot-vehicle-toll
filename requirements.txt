@@ -2,3 +2,5 @@ gunicorn
 Flask
 numpy
 opencv-contrib-python
+Pillow
+pytesseract
