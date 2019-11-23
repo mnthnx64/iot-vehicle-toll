@@ -15,7 +15,7 @@ To upload an image use the following format:
 import requests
 import cv2
 
-BASE_IP = ''
+BASE_IP = 'https://mnthnx64-iot.herokuapp.com/'
 url = 'post_image'
 
 img = cv2.imread('path_to_image.png')
