@@ -1,4 +1,4 @@
 gunicorn
-flask
+Flask
 numpy
-opencv-python
+opencv-contrib-python

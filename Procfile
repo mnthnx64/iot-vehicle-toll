@@ -1,1 +1,1 @@
-web: python3 src/app.py 
+web: gunicorn src/app:app --preload

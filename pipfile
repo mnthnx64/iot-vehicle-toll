@@ -3,9 +3,11 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [packages]
-flask = "*"
+Flask = "*"
 numpy = "*"
-opencv-python-headless = "*" 
+opencv-contrib-python = "*"
+gunicorn = "*"
+Jinja2 = ">=2.10.1"
 
 [requires]
 python_version = "3.6.8"
