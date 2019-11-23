@@ -18,7 +18,10 @@ SCALAR_RED = (0.0, 0.0, 255.0)
 
 showSteps = False
 
-def main(np_img):                                        
+def main(np_img):               
+    blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()
+    if blnKNNTrainingSuccessful == False:                              
+        print("\nerror: KNN traning was not successful\n")                          
     imgOriginalScene = np_img
 
     if imgOriginalScene is None:
