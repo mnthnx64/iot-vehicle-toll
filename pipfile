@@ -5,8 +5,8 @@ verify_ssl = true
 [packages]
 Flask = "*"
 numpy = "*"
+Pillow = "*"
 pytesseract = "*"
-pillow = "*"
 opencv-contrib-python = "*"
 gunicorn = "*"
 Jinja2 = ">=2.10.1"
