@@ -3,6 +3,7 @@ import DetectChars
 import Main
 import cv2
 import numpy as np
+import os
 
 app = Flask(__name__)
 
@@ -20,12 +21,9 @@ def post_image():
         return jsonify(car_plate.getResponse())
     except:
         return jsonify({"Error":"Error! Something went wrong."})
-
-
-blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()
-if blnKNNTrainingSuccessful == False:                              
-    print("\nerror: KNN traning was not successful\n")   
+  
 
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
